@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void helperSubset(vector<int>& nums,vector<int>& contri,vector<vector<int>>& a,int i)
+    void helperSubset(vector<int>& nums,vector<int> contri,vector<vector<int>>& a,int i)
     { int n=nums.size();
         if(i == n){
             a.push_back(contri);
