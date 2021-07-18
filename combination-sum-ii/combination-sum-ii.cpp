@@ -3,14 +3,15 @@ public:
     void helper(vector<int>& c, int tar,vector<vector<int>>& a,vector<int>& contri,int i)
     {   int n=c.size();
         //base cases
-        if(i==n ){
-            if(tar == 0)
-              a.push_back(contri);
+       
+        
+            if(tar == 0){
+             a.push_back(contri);
             return;
         }
-        if(tar <= 0){
-            if(tar == 0)
-              a.push_back(contri);
+         if(i==n ){
+            return;
+        }if(tar < 0){
             return;
         }
         if(tar - c[i] < 0){
