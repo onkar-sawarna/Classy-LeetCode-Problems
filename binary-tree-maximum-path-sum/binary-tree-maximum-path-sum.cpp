@@ -11,22 +11,24 @@
  */
 class Solution {
 public:
-    int maxPath(TreeNode* root,int& res){
-        //base condition
-        if(root == NULL)
-            return 0;
-        //hypothesis {always true}
-        int l=maxPath(root->left,res);
-        int r=maxPath(root->right,res);
-        //Induction step
+    int maxpath_sum(TreeNode* root,int& result){
+        if(root == NULL)return 0;
+        //Hypothesis- this has to be true
+        int l = maxpath_sum(root->left,result);
+        int r = maxpath_sum(root->right,result);
+//Temporary answer
+//This has to be passed to the node's parent
+//the second operand of outer max denotes that both the left and right subarray returned negative values
         int temp = max(max(l,r)+root->val,root->val);
-        int ans = max(temp,l+r+root->val);
-        res = max(res,ans);
+//now find the max between the diameter of from that particular subtree or from its parents
+        int ans = max(temp,root->val+l+r);
+        result = max(result,ans);
         return temp;
+        
     }
     int maxPathSum(TreeNode* root) {
-        int res=INT_MIN;
-        maxPath(root,res);
-        return res;
+        int result=INT_MIN;
+        maxpath_sum(root,result);
+        return result;
     }
 };
