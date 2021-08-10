@@ -1,27 +1,18 @@
 class Solution {
 public:
-    void helper(vector<int>& c,int tar,vector<int>& contri,vector<vector<int>>& a,int i){
-        int n=c.size();
-        //base cases
-        
-        if(i==n ){
-            if(tar == 0)
-              a.push_back(contri);
-            return;
+    void helper(vector<int>& candidates,int target,vector<int>& contri,vector<vector<int>>& ans,int idx){
+        if(target == 0){
+            ans.push_back(contri);
         }
-        if(tar <= 0){
-            if(tar == 0)
-              a.push_back(contri);
-            return;
+        for(int i=idx;i<candidates.size();i++){
+            if(candidates[i] > target)
+            {
+                break;
+            }
+            contri.push_back(candidates[i]);
+            helper(candidates,target-candidates[i],contri,ans,i);
+            contri.pop_back();
         }
-        if(tar - c[i] < 0){
-            return;
-        }
-        //recursive cases
-        contri.push_back(c[i]);
-        helper(c,tar-c[i],contri,a,i);
-        contri.pop_back();
-        helper(c,tar,contri,a,i+1); 
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<int> contri;
