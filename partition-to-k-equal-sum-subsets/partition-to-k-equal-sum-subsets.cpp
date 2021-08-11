@@ -7,10 +7,13 @@ public:
            return solve(nums,k-1,subset_sum,visited,0,0);
         for(int i=index;i<nums.size();i++){
             if(!visited[i]){
+                //including contribution
                 visited[i]=true;
                 curr_sum=curr_sum+nums[i];
+                //here k won't become k-1 as still a subset is not found
                 if(solve(nums,k,subset_sum,visited,i+1,curr_sum))
                     return true;
+                //removing contribution(backtracking step)
                 curr_sum=curr_sum-nums[i];
                 visited[i]=false;
             }
