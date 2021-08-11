@@ -2,8 +2,9 @@ class Solution {
 public:
     int count(int n,int start,vector<int>& visited){
         int ans=0;
-        if(start == n+1){
-            return 1;
+        if(start > n){
+            ans++;
+            return ans;
         }
         for(int i=1;i<=n;i++){
             if(!visited[i] and ((start)%i==0 || i%(start)==0)){
