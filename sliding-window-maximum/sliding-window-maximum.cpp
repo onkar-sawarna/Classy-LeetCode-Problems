@@ -19,7 +19,7 @@ public:
         for(i=k;i<n;i++){
             
             //if window size exceeds k then pop from front
-            while(!q.empty() and q.front()<=(i-k))
+            if(!q.empty() and q.front()<=(i-k))
                 q.pop_front();
             while(!q.empty() and nums[q.back()] <= nums[i])
                 q.pop_back();
